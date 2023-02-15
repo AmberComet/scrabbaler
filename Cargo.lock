@@ -3,6 +3,12 @@
 version = 3
 
 [[package]]
+name = "ABtree"
+version = "0.8.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b8cac1e199e5e1b8c190c5daeb8f61f2a5e5fb9d5add095cc40682a9d0ed90fb"
+
+[[package]]
 name = "autocfg"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -36,6 +42,7 @@ checksum = "e0a7ae3ac2f1173085d398531c705756c94a4c56843785df85a60c1a0afac116"
 name = "scrabbaler"
 version = "0.1.0"
 dependencies = [
+ "ABtree",
  "tokio",
  "tokio-util",
 ]
