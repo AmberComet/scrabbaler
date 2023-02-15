@@ -1,0 +1,34 @@
+idea 1: sort word into Btrees based on the most valuable letter, for letters of same value its alphebetical order
+order:Q,Z,J,X,K,F,H,V,W,Y,B,C,M,P,D,G,A,E,I,O,U,L,N,S,T,R
+this allows for a sudo binary search to be ran on the words where we start eleminating large sets of words that then we dont need to sort through
+(e.g if the letter set doesnt have q,z,j,f, or h we dont even look through thoes data sets)
+ Problem: once we hit A there will be a large pooling
+ Solution: sort by reverse commonality
+-------------------------------------------------------------------------------------------------------------------------------------------------
+commonality
+a= 153596
+b= 43508
+c= 87959
+d= 75548
+e= 194054
+f= 27061
+g= 63840
+h= 58343
+i= 167693
+j= 4181
+k= 22522
+l= 109897
+m= 65915
+n= 135615
+o= 129764
+p= 67470
+q= 4259
+r= 146038
+s= 172476
+t= 133044
+u= 75982
+v= 22605
+w= 18743
+x= 7194
+y= 39317
+z= 11401
