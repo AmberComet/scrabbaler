@@ -8,4 +8,4 @@ edition = "2021"
 [dependencies]
 tokio = "1.25.0"
 tokio-util = "0.7.7"
-ABtree = "0.8.0"
+regex = "1.7.1"
