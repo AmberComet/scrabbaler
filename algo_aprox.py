@@ -64,28 +64,52 @@ for word in file:
         p+=1
     elif(word.__contains__('c')):
         c+=1
-    elif(word.__contains__('d')):
-        d+=1
-    elif(word.__contains__('u')):
-        u+=0
-    elif(word.__contains__('l')):
-        l+=1
-    elif(word.__contains__('o')):
-        o+=1
-    elif(word.__contains__('n')):
-        n+=1
-    elif(word.__contains__('t')):
-        t+=1
-    elif(word.__contains__('i')):
-        i+=1
-    elif(word.__contains__('r')):
-        r+=1
-    elif(word.__contains__('a')):
-        a+=1
-    elif(word.__contains__('s')):
-        s+=1
+#    elif(word.__contains__('d')):
+#        d+=1
+#    elif(word.__contains__('u')):
+#        u+=0
+#    elif(word.__contains__('l')):
+#        l+=1
+#    elif(word.__contains__('o')):
+#        o+=1
+#    elif(word.__contains__('n')):
+#        n+=1
+#    elif(word.__contains__('t')):
+#        t+=1
+#    elif(word.__contains__('i')):
+#        i+=1
+#    elif(word.__contains__('r')):
+#        r+=1
+#    elif(word.__contains__('a')):
+#        a+=1
+#    elif(word.__contains__('s')):
+#        s+=1
     else:
         e+=1
         
-
-        
+print("q=",q)
+print("z=",z)       
+print("j=",j)
+print("x=",x)
+print("k=",k)
+print("f=",f)
+print("w=",w)
+print("v=",v)
+print("h=",h)
+print("y=",y)
+print("b=",b)
+print("m=",m)
+print("g=",g)
+print("p=",p)
+print("c=",c)
+print("d=",d)
+print("u=",u)
+print("l=",l)
+print("o=",o)
+print("n=",n)
+print("t=",t)
+print("i=",i)
+print("r=",r)
+print("a=",a)
+print("s=",s)
+print("1 pt=",e)
