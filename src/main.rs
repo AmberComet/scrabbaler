@@ -1,9 +1,15 @@
 use std::{fs::File, io};
+use ABtree::BTree;
 
 fn main() {
+    println!("Intializing Word Bank")
+
+    let words_from_file = words_initalization();
+
     
 }
 
+//todo fix file
 fn words_initalization() -> Vec<String> {
     let file = File::open(Collins_Scrabble_Words_2019.txt).expect("Error: Cant Find File");
     let buf = io::BufReader::new(file);
