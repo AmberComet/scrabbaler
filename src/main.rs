@@ -1,17 +1,53 @@
-use std::{fs::File, io};
-use ABtree::BTree;
+
+
+use std::{fs::File, io, collections::{btree_map, BTreeMap}, path::{self, Path}};
+use regex::*;
 
 fn main() {
-    println!("Intializing Word Bank")
+    /*Create the BTres to sort the words into
+    each they are sorted by value and within each value set they are then sorted by commonality
+    this is only mallocing the memory 
+    when these are implimented into the algorithm they should be implimened in this order*/
+    let mut q_word:BTreeMap<i32, String> = BTreeMap::new();
+    let mut z_word:BTreeMap<i32, String> = BTreeMap::new();
+    let mut j_word:BTreeMap<i32, String> = BTreeMap::new();
+    let mut x_word:BTreeMap<i32, String> = BTreeMap::new();
+    let mut k_word:BTreeMap<i32, String> = BTreeMap::new();
+    let mut f_word:BTreeMap<i32, String> = BTreeMap::new(); //heh F words
+    let mut w_word:BTreeMap<i32, String> = BTreeMap::new();
+    let mut v_word:BTreeMap<i32, String> = BTreeMap::new();
+    let mut h_word:BTreeMap<i32, String> = BTreeMap::new();
+    let mut y_word:BTreeMap<i32, String> = BTreeMap::new();
+    let mut b_word:BTreeMap<i32, String> = BTreeMap::new();
+    let mut m_word:BTreeMap<i32, String> = BTreeMap::new();
+    let mut g_word:BTreeMap<i32, String> = BTreeMap::new();
+    let mut p_word:BTreeMap<i32, String> = BTreeMap::new();
+    let mut c_word:BTreeMap<i32, String> = BTreeMap::new();
 
+    //this is where this misc words that only contain vowels and other verious 1pt letters go
+    //as a result this tree should always be checked for straggalers
+    let mut word_pool:BTreeMap<i32, String> = BTreeMap::new();
+
+
+
+    println!("Intializing Word Bank");
     let words_from_file = words_initalization();
 
+
+    /*this will take the vector of raw unsorted words and then sort them into the b trees to enable searching
+    * when implimented the order that the trees are in and sorted into must be int the order they are malloced
+    * when sorting into the trees also calculate the point value of each word and use that as key value
+    * the reason is that it makes it easier to sort through the words
+    * that way i can find words <= the total value of the letters then from thoes i can compaire the individual letters*/
+    for word in words_from_file {
+        
+    }
     
 }
 
-//todo fix file
+
 fn words_initalization() -> Vec<String> {
-    let file = File::open(Collins_Scrabble_Words_2019.txt).expect("Error: Cant Find File");
+    let file = File::open("Collins_Scrabble_Words_2019.txt").expect("Error: Cant Find File");
     let buf = io::BufReader::new(file);
     io::BufRead::lines(buf)
         .map(|l| l.expect("Could not parse line"))
