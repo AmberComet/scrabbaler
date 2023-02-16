@@ -53,3 +53,25 @@ fn words_initalization() -> Vec<String> {
         .map(|l| l.expect("Could not parse line"))
         .collect()
 }
+
+fn word_value(word:&str) -> i32{
+   let mut value=0;
+    for c in word.chars(){
+        if c=='Q'||c=='Z' {
+            value+=10;
+        }else if c=='J'|| c=='X' {
+            value+=8;
+        }else if c=='K' {
+            value+=5;
+        }else if c=='F'||c=='H'|| c=='V'||c=='W'||c=='Y' {
+            value+=4;
+        } else if c=='B'||c=='M'||c=='P'||c=='C' {
+            value+=3;
+        }else if c=='D'||c=='G' {
+            value+=2;
+        }else {
+            value +=1;
+        }
+    }
+    return value;
+}
