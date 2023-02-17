@@ -1,6 +1,6 @@
 
 
-use std::{fs::File, io, collections::{BTreeSet}, path::{self, Path}};
+use std::{fs::File, io, collections::{BTreeSet}};
 use regex::*;
 
 fn main() {
@@ -43,7 +43,39 @@ fn main() {
     for word in words_from_file {
         if word.contains('Q'){
             q_word.insert(word);
+        }else if word.contains('Z') {
+            z_word.insert(word);
+        }else if word.contains('J') {
+            j_word.insert(word);
+        }else if word.contains('X') {
+            x_word.insert(word);
+        }else if word.contains('K') {
+            k_word.insert(word);
+        }else if word.contains('F') {
+            f_word.insert(word);
+        }else if word.contains('W') {
+            w_word.insert(word);
+        }else if word.contains('V') {
+            v_word.insert(word);
+        }else if word.contains('H') {
+            h_word.insert(word);
+        }else if word.contains('Y') {
+            y_word.insert(word);
+        }else if word.contains('B') {
+            b_word.insert(word);
+        }else if word.contains('M') {
+            m_word.insert(word);
+        }else if word.contains('G'){
+            g_word.insert(word);
+        }else if word.contains('P') {
+            p_word.insert(word);
+        }else if word.contains('C') {
+            c_word.insert(word);
+        }else {
+            word_pool.insert(word);
         }
+            
+        
     }
     
 }
