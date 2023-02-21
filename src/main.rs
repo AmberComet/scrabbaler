@@ -29,7 +29,7 @@ fn main() {
     //as a result this tree should always be checked for straggalers
     let mut word_pool:BTreeSet<String> = BTreeSet::new();
 
-
+    let mut user_input:String = String::new();
 
     println!("Intializing Word Bank");
     let words_from_file = words_initalization();
@@ -77,7 +77,12 @@ fn main() {
             
         
     }
+    println!("plese enter what chars you have");
+
+    io::stdin().read_line(&mut user_input).expect("There was an error reading line");
+    let user_char: Vec<char> = user_input.chars().collect();
     
+
 }
 
 
