@@ -80,7 +80,14 @@ fn main() {
     println!("plese enter what chars you have");
 
     io::stdin().read_line(&mut user_input).expect("There was an error reading line");
-    let user_char: Vec<char> = user_input.chars().collect();
+    let user_char: String = match user_input.trim().parse() {
+        Ok(String) => String,
+        Err(_) => panic!(),
+    };
+
+    if user_char.contains('q'){
+        
+    }
     
 
 }
@@ -92,6 +99,21 @@ fn words_initalization() -> Vec<String> {
     io::BufRead::lines(buf)
         .map(|l| l.expect("Could not parse line"))
         .collect()
+}
+
+fn word_search(chars:&String, word_bank:&BTreeSet<String>) -> Vec<String>{
+    let mut word_results:Vec<String> = Vec::new();
+    let regex_str = format!("^{}$", chars.chars().map(|c| format!("(?=.*{})", c)).collect::<String>()) +
+        &format!("[^{}]*$", chars.chars().collect::<String>());
+    let regex = Regex::new(&regex_str).unwrap();
+
+    word_results = word_bank
+    .iter()
+    .filter(|word| regex.is_match(word))
+    .cloned()
+    .collect::<Vec<_>>();
+
+    return word_results;
 }
 
 /*fn word_value(word:&str) -> i32{
