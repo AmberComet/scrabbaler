@@ -85,8 +85,10 @@ fn main() {
         Err(_) => panic!(),
     };
 
+    let mut word_results:Vec<String> = Vec::new();
+
     if user_char.contains('q'){
-        
+        word_results.append(&mut word_search(&user_char, &q_word));
     }
     
 
@@ -102,12 +104,12 @@ fn words_initalization() -> Vec<String> {
 }
 
 fn word_search(chars:&String, word_bank:&BTreeSet<String>) -> Vec<String>{
-    let mut word_results:Vec<String> = Vec::new();
+    
     let regex_str = format!("^{}$", chars.chars().map(|c| format!("(?=.*{})", c)).collect::<String>()) +
         &format!("[^{}]*$", chars.chars().collect::<String>());
     let regex = Regex::new(&regex_str).unwrap();
 
-    word_results = word_bank
+    let word_results = word_bank
     .iter()
     .filter(|word| regex.is_match(word))
     .cloned()
