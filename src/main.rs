@@ -72,6 +72,8 @@ fn main() {
             word_pool.insert(word);
         }
     }
+
+    // This handles user input
     println!("plese enter what chars you have");
 
     io::stdin()
@@ -86,6 +88,8 @@ fn main() {
 
     let mut word_results: Vec<_> = Vec::new();
 
+    //TODO Add multithreading here
+    //this will iterate over each letter and only look at the Btrees that contain letters that the input contains
     if user_char.contains('Q') {
         word_results.append(&mut word_search(&user_char, &q_word));
     }
@@ -130,12 +134,13 @@ fn main() {
     }
     word_results.append(&mut word_search(&user_char, &word_pool));
 
-
+    //Outputs the words
     for word in word_results {
         println!("{}", word)
     }
 }
 
+///Reads words from file and returns a vector of the words
 fn words_initalization() -> Vec<String> {
     let file = File::open("Collins_Scrabble_Words_2019.txt").expect("Error: Cant Find File");
     let buf = io::BufReader::new(file);
@@ -143,7 +148,9 @@ fn words_initalization() -> Vec<String> {
         .map(|l| l.expect("Could not parse line"))
         .collect()
 }
-
+///This function will take a String and Btree and will create regular expressions based on that string
+/// It will then search through the B tree and apply the regular expression on each of thoes words
+/// it will then return a vector of all matches
 fn word_search(chars: &String, word_bank: &BTreeSet<String>) -> Vec<String> {
     let regex_chars = regex::escape(chars);
 
