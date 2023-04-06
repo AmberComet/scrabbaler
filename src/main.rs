@@ -1,5 +1,4 @@
 
-
 use std::{fs::File, io, collections::{BTreeSet}};
 use regex::*;
 
@@ -90,7 +89,7 @@ fn main() {
     let mut word_results:Vec<_> = Vec::new();
     
 
-    if user_char.contains('q'){
+    if user_char.contains('Q'){
         word_results.append(&mut word_search(&user_char, &q_word));
     }
     
@@ -137,13 +136,11 @@ fn word_search(chars:&String, word_bank:&BTreeSet<String>) -> Vec<String>{
     regex_str.push(')');
     let regex = Regex::new(&regex_str).unwrap();
 
-    let word_results = word_bank
-    .iter()
-    .filter(|word| regex.is_match(word))
-    .cloned()
-    .collect::<Vec<_>>();
-
-    return word_results;
+    word_bank
+        .iter()
+        .filter(|word| regex.is_match(word))
+        .cloned()
+        .collect()
 }
 
 /*fn word_value(word:&str) -> i32{
