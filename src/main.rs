@@ -90,26 +90,46 @@ fn main() {
         word_results.append(&mut word_search(&user_char, &q_word));
     }
     if user_char.contains('Z') {
-        word_results.append(&mut word_search(&user_char, &z_word))
+        word_results.append(&mut word_search(&user_char, &z_word));
     }
     if user_char.contains('X') {
-        word_results.append(&mut word_search(&user_char, &x_word))
+        word_results.append(&mut word_search(&user_char, &x_word));
     }
     if user_char.contains('K') {
-        word_results.append(&mut word_search(&user_char, &k_word))
+        word_results.append(&mut word_search(&user_char, &k_word));
     }
     if user_char.contains('F') {
-        word_results.append(&mut word_search(&user_char, &f_word))
+        word_results.append(&mut word_search(&user_char, &f_word));
     }
     if user_char.contains('W') {
-        word_results.append(&mut word_search(&user_char, &w_word))
+        word_results.append(&mut word_search(&user_char, &w_word));
     }
     if user_char.contains('V') {
-        word_results.append(&mut word_search(&user_char, &v_word))
+        word_results.append(&mut word_search(&user_char, &v_word));
     }
     if user_char.contains('H') {
-        word_results.append(&mut word_search(&user_char, &h_word))
+        word_results.append(&mut word_search(&user_char, &h_word));
     }
+    if user_char.contains('Y') {
+        word_results.append(&mut word_search(&user_char, &y_word));
+    }
+    if user_char.contains('B') {
+        word_results.append(&mut word_search(&user_char, &b_word));
+    }
+    if user_char.contains('M') {
+        word_results.append(&mut word_search(&user_char, &m_word));
+    }
+    if user_char.contains('G') {
+        word_results.append(&mut word_search(&user_char, &g_word));
+    }
+    if user_char.contains('P') {
+        word_results.append(&mut word_search(&user_char, &p_word));
+    }
+    if user_char.contains('C') {
+        word_results.append(&mut word_search(&user_char, &c_word));
+    }
+    word_results.append(&mut word_search(&user_char, &word_pool));
+
 
     for word in word_results {
         println!("{}", word)
