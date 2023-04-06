@@ -86,53 +86,55 @@ fn main() {
 
     let user_char = user_char.to_uppercase();
 
+    let user_regex=regex_generator(&user_char);
+
     let mut word_results: Vec<_> = Vec::new();
 
     //TODO Add multithreading here
     //this will iterate over each letter and only look at the Btrees that contain letters that the input contains
     if user_char.contains('Q') {
-        word_results.append(&mut word_search(&user_char, &q_word));
+        word_results.append(&mut word_search(&user_regex, &q_word));
     }
     if user_char.contains('Z') {
-        word_results.append(&mut word_search(&user_char, &z_word));
+        word_results.append(&mut word_search(&user_regex, &z_word));
     }
     if user_char.contains('X') {
-        word_results.append(&mut word_search(&user_char, &x_word));
+        word_results.append(&mut word_search(&user_regex, &x_word));
     }
     if user_char.contains('K') {
-        word_results.append(&mut word_search(&user_char, &k_word));
+        word_results.append(&mut word_search(&user_regex, &k_word));
     }
     if user_char.contains('F') {
-        word_results.append(&mut word_search(&user_char, &f_word));
+        word_results.append(&mut word_search(&user_regex, &f_word));
     }
     if user_char.contains('W') {
-        word_results.append(&mut word_search(&user_char, &w_word));
+        word_results.append(&mut word_search(&user_regex, &w_word));
     }
     if user_char.contains('V') {
-        word_results.append(&mut word_search(&user_char, &v_word));
+        word_results.append(&mut word_search(&user_regex, &v_word));
     }
     if user_char.contains('H') {
-        word_results.append(&mut word_search(&user_char, &h_word));
+        word_results.append(&mut word_search(&user_regex, &h_word));
     }
     if user_char.contains('Y') {
-        word_results.append(&mut word_search(&user_char, &y_word));
+        word_results.append(&mut word_search(&user_regex, &y_word));
     }
     if user_char.contains('B') {
-        word_results.append(&mut word_search(&user_char, &b_word));
+        word_results.append(&mut word_search(&user_regex, &b_word));
     }
     if user_char.contains('M') {
-        word_results.append(&mut word_search(&user_char, &m_word));
+        word_results.append(&mut word_search(&user_regex, &m_word));
     }
     if user_char.contains('G') {
-        word_results.append(&mut word_search(&user_char, &g_word));
+        word_results.append(&mut word_search(&user_regex, &g_word));
     }
     if user_char.contains('P') {
-        word_results.append(&mut word_search(&user_char, &p_word));
+        word_results.append(&mut word_search(&user_regex, &p_word));
     }
     if user_char.contains('C') {
-        word_results.append(&mut word_search(&user_char, &c_word));
+        word_results.append(&mut word_search(&user_regex, &c_word));
     }
-    word_results.append(&mut word_search(&user_char, &word_pool));
+    word_results.append(&mut word_search(&user_regex, &word_pool));
 
     //Outputs the words
     for word in word_results {
@@ -151,7 +153,16 @@ fn words_initalization() -> Vec<String> {
 ///This function will take a String and Btree and will create regular expressions based on that string
 /// It will then search through the B tree and apply the regular expression on each of thoes words
 /// it will then return a vector of all matches
-fn word_search(chars: &String, word_bank: &BTreeSet<String>) -> Vec<String> {
+fn word_search(regex:&Regex, word_bank: &BTreeSet<String>) -> Vec<String> {
+
+    word_bank
+        .iter()
+        .filter(|word| regex.is_match(word))
+        .cloned()
+        .collect()
+}
+
+fn regex_generator(chars: &String) -> Regex {
     let regex_chars = regex::escape(chars);
 
     let mut perms: Vec<String> = vec![String::from("")];
@@ -176,12 +187,7 @@ fn word_search(chars: &String, word_bank: &BTreeSet<String>) -> Vec<String> {
     }
     regex_str.push(')');
     let regex = Regex::new(&regex_str).unwrap();
-
-    word_bank
-        .iter()
-        .filter(|word| regex.is_match(word))
-        .cloned()
-        .collect()
+    regex
 }
 
 /*fn word_value(word:&str) -> i32{
