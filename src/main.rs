@@ -80,17 +80,24 @@ fn main() {
     println!("plese enter what chars you have");
 
     io::stdin().read_line(&mut user_input).expect("There was an error reading line");
-    let user_char: String = match user_input.trim().parse() {
-        Ok(String) => String,
+    let  user_char: String = match user_input.trim().parse() {
+        Ok(string) => string,
         Err(_) => panic!(),
     };
 
-    let mut word_results:Vec<String> = Vec::new();
+    let user_char= user_char.to_uppercase();
+
+    let mut word_results:Vec<_> = Vec::new();
+    
 
     if user_char.contains('q'){
         word_results.append(&mut word_search(&user_char, &q_word));
     }
     
+    
+    for word in word_results {
+        println!("{}", word)
+    }
 
 }
 
@@ -105,8 +112,29 @@ fn words_initalization() -> Vec<String> {
 
 fn word_search(chars:&String, word_bank:&BTreeSet<String>) -> Vec<String>{
     
-    let regex_str = format!("^{}$", chars.chars().map(|c| format!("(?=.*{})", c)).collect::<String>()) +
-        &format!("[^{}]*$", chars.chars().collect::<String>());
+    let regex_chars = regex::escape(chars);
+
+    let mut perms: Vec<String> = vec![String::from("")];
+    for c in regex_chars.chars() {
+        let mut new_perms = Vec::new();
+        for perm in &perms {
+            for i in 0..=perm.len() {
+                let mut new_perm = perm.clone();
+                new_perm.insert(i, c);
+                new_perms.push(new_perm);
+            }
+        }
+        perms = new_perms;
+    }
+
+    let mut regex_str = String::from("^(");
+    for (i, perm) in perms.iter().enumerate() {
+        if i > 0 {
+            regex_str.push('|');
+        }
+        regex_str.push_str(&format!("{}[^{}]*$", perm, regex_chars));
+    }
+    regex_str.push(')');
     let regex = Regex::new(&regex_str).unwrap();
 
     let word_results = word_bank
